@@ -283,10 +283,28 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
+    .footer-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .footer-link {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--purple2); }
+    .footer-sep { font-size: 0.78rem; color: rgba(255,255,255,0.12); }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.8s cubic-bezier(0.16,1,0.3,1),
+                  filter 0.8s ease;
+      transition-delay: var(--d, 0s);
+    }
+    .reveal.from-left  { transform: translateX(-60px); }
+    .reveal.from-right { transform: translateX(60px); }
+    .reveal.from-scale { transform: scale(0.85) translateY(20px); }
+    .reveal.from-blur  { transform: translateY(20px); filter: blur(10px); }
+    .reveal.visible    { opacity: 1; transform: none; filter: none; }
 
     /* ── TABLET ── */
     @media (max-width: 860px) {
@@ -437,36 +455,27 @@
       <h1>Cuide da sua<br><em>grana</em> com<br>o Granii</h1>
       <p class="hero-sub">Registre receitas e despesas, entenda para onde seu dinheiro vai e mantenha o controle — sem planilhas, sem complexidade.</p>
       <div class="hero-actions">
-        <a href="#download" class="btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.5c.3.17.64.19.96.07l12.14-7.01-2.76-2.76L3.18 23.5zM20.47 10.34l-2.6-1.5-3.06 3.06 3.06 3.06 2.63-1.52c.75-.43.75-1.67-.03-2.1zM2.01 1.5C1.97 1.67 2 1.84 2 2v20c0 .16-.01.33.03.5l10.3-10.3L2.01 1.5zm3.65-.09l12.14 7.01-2.76 2.76L5.66 1.41z"/></svg>
-          Em breve na Play Store
+        <a href="#" class="btn-store btn-store-hero">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.18 23.5c.3.17.64.19.96.07l12.14-7.01-2.76-2.76L3.18 23.5z" fill="#EA4335"/>
+            <path d="M20.47 10.34l-2.6-1.5-3.06 3.06 3.06 3.06 2.63-1.52c.75-.43.75-1.67-.03-2.1z" fill="#FBBC05"/>
+            <path d="M2.01 1.5C1.97 1.67 2 1.84 2 2v20c0 .16-.01.33.03.5l10.3-10.3L2.01 1.5z" fill="#4285F4"/>
+            <path d="M5.66 1.41l12.14 7.01-2.76 2.76L5.66 1.41z" fill="#34A853"/>
+          </svg>
+          <span class="btn-store-text">
+            <small>Baixar no</small>
+            <strong>Google Play</strong>
+          </span>
         </a>
         <a href="#features" class="btn-ghost">Ver o app →</a>
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-phone"><img loading="lazy" src="images/screen-02.png" alt="Tela inicial Granii"></div>
+      <div class="hero-phone"><img loading="eager" src="images/screen-02.png" alt="Tela inicial Granii"></div>
     </div>
   </div>
 
-  <section class="section-showcase">
-    <div class="container">
-      <div class="showcase-header">
-        <p class="section-label reveal">O app</p>
-        <h2 class="section-title reveal">Simples de usar,<br>poderoso de verdade</h2>
-      </div>
-    </div>
-    <div class="phones-row">
-      <div class="phone-wrap"><div class="phone-card reveal"><img loading="lazy" src="images/screen-03.png" alt="Relatórios"></div><div class="phone-label">Relatórios</div></div>
-      <div class="phone-wrap"><div class="phone-card reveal"><img loading="lazy" src="images/screen-04.png" alt="Limite de Gastos"></div><div class="phone-label">Limite de Gastos</div></div>
-      <div class="phone-wrap"><div class="phone-card featured reveal"><img loading="lazy" src="images/screen-05.png" alt="Tela Principal"></div><div class="phone-label">Tela Principal</div></div>
-      <div class="phone-wrap"><div class="phone-card reveal"><img loading="lazy" src="images/screen-06.png" alt="Fluxo de Caixa"></div><div class="phone-label">Fluxo de Caixa</div></div>
-      <div class="phone-wrap"><div class="phone-card reveal"><img loading="lazy" src="images/screen-07.png" alt="Categorias"></div><div class="phone-label">Categorias</div></div>
-    </div>
-  </section>
-
-    <!-- PARA QUEM É -->
-  <section class="section-audience">
+<section class="section-audience">
     <div class="container">
       <div class="audience-inner reveal">
         <div class="audience-text">
@@ -482,15 +491,14 @@
         <div class="audience-visual">
           <div class="audience-quote">
             <div class="quote-mark">"</div>
-            <p>Quero saber para onde meu dinheiro vai, sem precisar de um contador."</p>
-            <span class="quote-attr">— Usuário típico do Granii</span>
+            <p>O Granii não acessa sua conta, não pede seus dados bancários e não tem plano premium. Só cuida da sua grana.</p>
+            <span class="quote-attr">— Promessa Granii</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PERGUNTAS -->
   <section class="section-questions">
     <div class="container">
       <p class="section-label reveal">O que o Granii responde</p>
@@ -504,23 +512,39 @@
     </div>
   </section>
 
+  <section class="section-showcase">
+    <div class="container">
+      <div class="showcase-header">
+        <p class="section-label reveal">O app</p>
+        <h2 class="section-title reveal">Simples de usar,<br>poderoso de verdade</h2>
+      </div>
+    </div>
+    <div class="phones-row">
+      <div class="phone-wrap"><div class="phone-card reveal from-scale"><img loading="lazy" src="images/screen-03.png" alt="Relatórios"></div><div class="phone-label">Relatórios</div></div>
+      <div class="phone-wrap"><div class="phone-card reveal from-scale"><img loading="lazy" src="images/screen-04.png" alt="Limite de Gastos"></div><div class="phone-label">Limite de Gastos</div></div>
+      <div class="phone-wrap"><div class="phone-card featured reveal"><img loading="lazy" src="images/screen-05.png" alt="Tela Principal"></div><div class="phone-label">Tela Principal</div></div>
+      <div class="phone-wrap"><div class="phone-card reveal from-scale"><img loading="lazy" src="images/screen-06.png" alt="Fluxo de Caixa"></div><div class="phone-label">Fluxo de Caixa</div></div>
+      <div class="phone-wrap"><div class="phone-card reveal from-scale"><img loading="lazy" src="images/screen-07.png" alt="Categorias"></div><div class="phone-label">Categorias</div></div>
+    </div>
+  </section>
+
   <section class="section-features" id="features">
     <div class="container">
       <p class="section-label reveal" style="text-align:center">Funcionalidades</p>
       <h2 class="section-title reveal" style="text-align:center; max-width:560px; margin:0 auto">Tudo que você precisa,<br>nada que você não precisa</h2>
 
-      <div class="features-split reveal">
-        <div class="features-phone"><div class="features-phone-wrap"><img loading="lazy" src="images/screen-08.png" alt="Relatório Granii"></div></div>
-        <div class="features-list">
+      <div class="features-split">
+        <div class="features-phone reveal from-left"><div class="features-phone-wrap"><img loading="lazy" src="images/screen-08.png" alt="Relatório Granii"></div></div>
+        <div class="features-list reveal from-right">
           <div class="f-item"><div class="f-dot"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="f-info"><div class="f-name">Relatórios e gráficos</div><div class="f-desc">Gasto por Categoria, Evolução Mensal, Gastos Recorrentes e Receitas vs Despesas em gráficos claros.</div></div></div>
           <div class="f-item"><div class="f-dot"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div class="f-info"><div class="f-name">Limite de gastos</div><div class="f-desc">Defina metas mensais por categoria e acompanhe o progresso com barra visual em tempo real.</div></div></div>
-          <div class="f-item"><div class="f-dot"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="4" x2="14" y2="4"/><line x1="10" y1="4" x2="3" y2="4"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="8" y1="12" x2="3" y2="12"/><line x1="21" y1="20" x2="16" y2="20"/><line x1="12" y1="20" x2="3" y2="20"/><circle cx="12" cy="4" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="14" cy="20" r="2"/></svg></div><div class="f-info"><div class="f-name">Filtros avançados</div><div class="f-desc">Filtre por categoria, tipo ou período. Encontre qualquer movimentação em segundos.</div></div></div>
+          <div class="f-item"><div class="f-dot"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="f-info"><div class="f-name">Resumo mensal</div><div class="f-desc">Veja quanto entrou, quanto saiu e o saldo do mês em segundos. Navegue por meses anteriores quando quiser.</div></div></div>
         </div>
       </div>
 
-      <div class="features-split reverse reveal">
-        <div class="features-phone"><div class="features-phone-wrap"><img loading="lazy" src="images/screen-09.png" alt="Lançamentos Granii"></div></div>
-        <div class="features-list">
+      <div class="features-split reverse">
+        <div class="features-phone reveal from-right"><div class="features-phone-wrap"><img loading="lazy" src="images/screen-09.png" alt="Lançamentos Granii"></div></div>
+        <div class="features-list reveal from-left">
           <div class="f-item"><div class="f-dot"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="f-info"><div class="f-name">Lançamento rápido</div><div class="f-desc">Registre receitas e despesas em segundos — como entrada única, parcelada ou recorrente. O app organiza tudo automaticamente.</div></div></div>
           <div class="f-item"><div class="f-dot"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div><div class="f-info"><div class="f-name">Categorias personalizadas</div><div class="f-desc">Crie suas próprias categorias com emoji. Organize do jeito que faz sentido pra você.</div></div></div>
           <div class="f-item"><div class="f-dot"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div><div class="f-info"><div class="f-name">100% offline e privado</div><div class="f-desc">Funciona sem internet. O login com Google é usado só para identificar você — seus dados financeiros nunca saem do celular.</div></div></div>
@@ -536,12 +560,10 @@
       <div class="pills-wrap reveal">
         <div class="pill green"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Gratuito</div>
         <div class="pill green"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.69 14a6.9 6.9 0 0 0 .31-2V5l-8-3-3.16 1.18"/><path d="M4.73 4.73L4 5v7c0 6 8 10 8 10a20.29 20.29 0 0 0 5.62-4.38"/><line x1="1" y1="1" x2="23" y2="23"/></svg>Sem anúncios</div>
-        <div class="pill purple"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>Funciona offline</div>
-        <div class="pill purple"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>Dados no seu celular</div>
+        <div class="pill purple"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Dados só no celular</div>
         <div class="pill purple"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>Interface limpa</div>
         
         <div class="pill purple"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>Backup dos dados</div>
-        <div class="pill purple"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Categorias personalizadas</div>
         <div class="pill purple"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/><rect x="8" y="6" width="8" height="5" rx="1"/></svg>Widget na tela inicial</div>
       </div>
     </div>
@@ -549,9 +571,9 @@
 
   <section class="section-cta" id="download">
     <div class="cta-logo"><img loading="lazy" src="images/screen-10.png" alt="Granii"></div>
+    <p class="cta-sub reveal">Sem cadastro de cartão. Sem acesso ao banco.<br>Só você e as suas finanças.</p>
     <h2 class="cta-title reveal">Comece agora.<br>É grátis.</h2>
-    <p class="cta-sub reveal">Disponível em breve. Sem anúncios, sem assinatura.</p>
-    <div class="cta-actions reveal">
+<div class="cta-actions reveal">
       <a href="#" class="btn-store">
         <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M3.18 23.5c.3.17.64.19.96.07l12.14-7.01-2.76-2.76L3.18 23.5z" fill="#EA4335"/>
@@ -578,11 +600,72 @@
 
   <footer>
     <div class="footer-logo"><img loading="lazy" src="images/screen-11.png" alt="Granii"><span>Granii</span></div>
-    <div class="footer-links"><span class="footer-copy">© 2026 Granii. Todos os direitos reservados.</span><a href="https://www.notion.so/Pol-tica-de-Privacidade-32780981b8bc80aa8e87f584b1e41bd3" target="_blank" rel="noopener" class="footer-link">Política de Privacidade</a></div>
+    <div class="footer-links">
+      <span class="footer-copy">© 2026 Granii. Todos os direitos reservados.</span>
+      <span class="footer-sep">·</span>
+      <a href="https://www.notion.so/Pol-tica-de-Privacidade-32780981b8bc80aa8e87f584b1e41bd3" target="_blank" rel="noopener" class="footer-link">Política de Privacidade</a>
+    </div>
   </footer>
 
   <script>
-    // Reveal on scroll
+    // Sempre inicia no topo, independente do hash na URL
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
+    // ── Features: cada f-item entra individualmente ──────────────────────
+    document.querySelectorAll('.features-split').forEach(split => {
+      const list = split.querySelector('.features-list');
+      const isReverse = split.classList.contains('reverse');
+      list.classList.remove('reveal', 'from-right', 'from-left');
+      list.querySelectorAll('.f-item').forEach((item, i) => {
+        item.classList.add('reveal', isReverse ? 'from-left' : 'from-right');
+        item.style.setProperty('--d', `${i * 0.18}s`);
+      });
+    });
+
+    // ── Audience: label, título, desc e pills entram separadamente ───────
+    document.querySelectorAll('.audience-inner').forEach(inner => {
+      inner.classList.remove('reveal');
+      const textEl = inner.querySelector('.audience-text');
+      if (textEl) {
+        [...textEl.children].forEach((el, i) => {
+          el.classList.add('reveal');
+          el.style.setProperty('--d', `${i * 0.12}s`);
+        });
+      }
+      const visualEl = inner.querySelector('.audience-visual');
+      if (visualEl) {
+        visualEl.classList.add('reveal');
+        visualEl.style.setProperty('--d', '0.18s');
+      }
+    });
+
+    // ── Q-cards: stagger individual ───────────────────────────────────────
+    document.querySelectorAll('.questions-grid .q-card').forEach((el, i) => {
+      el.classList.add('reveal', 'from-scale');
+      el.style.setProperty('--d', `${i * 0.15}s`);
+    });
+
+    // ── Pills: cada pill entra individualmente ────────────────────────────
+    document.querySelectorAll('.pills-wrap').forEach(wrap => {
+      wrap.classList.remove('reveal');
+      [...wrap.children].forEach((el, i) => {
+        el.classList.add('reveal', 'from-scale');
+        el.style.setProperty('--d', `${i * 0.08}s`);
+      });
+    });
+
+    // ── Phone cards do showcase: stagger por posição ──────────────────────
+    document.querySelectorAll('.phones-row .phone-card').forEach((el, i) => {
+      el.style.setProperty('--d', `${i * 0.08}s`);
+    });
+
+    // ── Labels de seção: entram com blur ──────────────────────────────────
+    document.querySelectorAll('.section-label.reveal').forEach(el => {
+      el.classList.add('from-blur');
+    });
+
+    // ── Observer ──────────────────────────────────────────────────────────
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -590,15 +673,13 @@
           observer.unobserve(e.target);
         }
       });
-    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    // Fallback: show all after 2s
 
-
-    // Fallback: make all visible after 1.5s in case observer fails
-    setTimeout(() => {
+    // ── Fallback (só se IntersectionObserver não existir) ─────────────────
+    if (!('IntersectionObserver' in window)) {
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-    }, 1500);
+    }
   </script>
 </body>
 </html>
