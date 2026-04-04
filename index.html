@@ -610,7 +610,12 @@
   <script>
     // Sempre inicia no topo, independente do hash na URL
     if (history.scrollRestoration) history.scrollRestoration = 'manual';
+    document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo(0, 0);
+    window.addEventListener('load', () => {
+      window.scrollTo(0, 0);
+      document.documentElement.style.scrollBehavior = '';
+    });
 
     // ── Features: cada f-item entra individualmente ──────────────────────
     document.querySelectorAll('.features-split').forEach(split => {
